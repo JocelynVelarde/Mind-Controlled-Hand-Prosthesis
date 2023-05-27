@@ -1,7 +1,7 @@
 import pylsl
 import serial
 # Open serial port
-ser = serial.Serial('COM9', 9600) 
+ser = serial.Serial('COM5', 9600) 
 # Resolve EEG stream on the lab network
 streams = pylsl.resolve_byprop('type', 'Markers', timeout=2)
 if not streams:
@@ -19,10 +19,10 @@ else:
         if sample[0] == 770:
             left_count += 1
             # Send the label to the Arduino
-            ser.write(b'L') 
+            ser.write(b'O') 
         elif sample[0] == 769:
             right_count += 1
-            ser.write(b'R') 
+            ser.write(b'C') 
         else:
             print("Unknown marker")
         # Print the number of repetitions of each label
